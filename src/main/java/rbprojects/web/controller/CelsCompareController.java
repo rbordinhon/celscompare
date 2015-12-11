@@ -15,7 +15,7 @@ public class CelsCompareController {
 
 	@RequestMapping(value = "/findAll", method = RequestMethod.GET, produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<CelularInfoVO> getInfos() {
-		List<CelularInfoVO> infos = new ArrayList<>();
+		List<CelularInfoVO> infos = new ArrayList();
 		CelularInfoVO info = new CelularInfoVO();
 		info.name = "infod";
 		infos.add(info);
