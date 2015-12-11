@@ -2,7 +2,7 @@ Please make note of these MySQL credentials again:
   Root User: adminz9kFsCv
   Root Password: l6VXbFh_z8DG
 URL: https://celscompare-rbprojects.rhcloud.com/phpmyadmin/  
-
+ 
 ssh://566a13c40c1e660e13000244@celscompare-rbprojects.rhcloud.com/~/git/celscompare.git/
 
 ssh -L 3306:localhost:3306 566a13c40c1e660e13000244@celscompare-rbprojects.rhcloud.com
