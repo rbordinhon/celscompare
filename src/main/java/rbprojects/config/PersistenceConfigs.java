@@ -19,7 +19,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
-@ImportResource("classpath:META-INF/datasourceConf.xml")
+@ImportResource("classpath:datasource.xml")
 public class PersistenceConfigs implements ApplicationContextAware {
 
 	private Logger logger = LoggerFactory.getLogger(PersistenceConfigs.class);
