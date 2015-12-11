@@ -4,5 +4,5 @@ Please make note of these MySQL credentials again:
 URL: https://celscompare-rbprojects.rhcloud.com/phpmyadmin/  
  
 ssh://566a13c40c1e660e13000244@celscompare-rbprojects.rhcloud.com/~/git/celscompare.git/
-
+ 
 ssh -L 3306:localhost:3306 566a13c40c1e660e13000244@celscompare-rbprojects.rhcloud.com
