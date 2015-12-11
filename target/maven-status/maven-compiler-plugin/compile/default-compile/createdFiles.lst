@@ -1,5 +1,6 @@
-rbprojects\config\CelsCompareConfig.class
 rbprojects\web\config\CelsCompareWebConfig.class
 rbprojects\config\PersistenceConfigs.class
 rbprojects\web\controller\CelsCompareController.class
+rbprojects\config\CelsCompareConfig.class
 rbprojects\config\CelsCompareVo.class
+rbprojects\web\vo\CelularInfoVO.class
