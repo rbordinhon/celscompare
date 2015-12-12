@@ -1,29 +1,37 @@
 package rbprojects.web.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import rbprojects.web.vo.CelularInfoVO;
+import rbprojects.dto.CelularInfoVO;
+import rbprojects.dto.ComparativoCelularVO;
+import rbprojects.service.CelularCompareService;
 
 @RestController
 public class CelsCompareController {
 
-	@RequestMapping(value = "/findAll", method = RequestMethod.GET, produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<CelularInfoVO> getInfos() {
-		List<CelularInfoVO> infos = new ArrayList();
-		CelularInfoVO info = new CelularInfoVO();
-		info.name = "infod";
-		infos.add(info);
-		info = new CelularInfoVO();
-		info.name = "infod2";
-		infos.add(info);
-		return infos;
+	@Autowired
+	private CelularCompareService serviceCtrl;
 
+	@RequestMapping(value = "/findAll", method = RequestMethod.POST, produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody CelularInfoVO[]  getInfos() {
+		return serviceCtrl.findAllInfos();
 	}
+	
+	@RequestMapping(value = "/compare/{idCelular1}/{idCelular2}", method = RequestMethod.POST, produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ComparativoCelularVO  compare(@PathVariable long idCelular1,@PathVariable long idCelular2) {
+		return serviceCtrl.compareCels(idCelular1, idCelular2);
+	}
+	
+	@RequestMapping(value = "/findAllOrderByFavorito", method = RequestMethod.POST, produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody CelularInfoVO[]  findAllOrderByFavorito() {
+		return serviceCtrl.findAllInfosOrderByFavorito();
+	}
+	
+	
 
 }

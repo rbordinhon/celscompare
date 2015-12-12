@@ -1,0 +1,24 @@
+@CHARSET "ISO-8859-1";
+
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #333;
+}
+
+.container {
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+	width: 1170px;
+}
+table {
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+.modal-dialog {
+    width: 1000px;
+    margin: 30px auto;
+}
