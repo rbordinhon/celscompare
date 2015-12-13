@@ -35,7 +35,7 @@ public class PersistenceConfigs implements ApplicationContextAware {
 	@Bean(name="celsDataSource")
 	public DataSource dataSource(){
 		org.apache.commons.dbcp.BasicDataSource dataSource = new BasicDataSource();
-		if(System.getProperty("ambiente").equalsIgnoreCase("Teste")){
+		if(isTesteEnvironment()){
 			dataSource.setDriverClassName("org.h2.Driver");
 			final String url = "jdbc:h2:./data/test";//;INIT=RUNSCRIPT FROM 'classpath:/teste.sql'";
 			dataSource.setUrl(url);
@@ -55,6 +55,10 @@ public class PersistenceConfigs implements ApplicationContextAware {
 		return dataSource;
 		
 	}
+
+	private boolean isTesteEnvironment() {
+		return System.getProperties().containsKey("ambiente") && System.getProperty("ambiente").equalsIgnoreCase("Teste");
+	}
 	
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
@@ -71,7 +75,7 @@ public class PersistenceConfigs implements ApplicationContextAware {
 	public PlatformTransactionManager transactionManager() throws SQLException {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
 		final LocalContainerEntityManagerFactoryBean local = context.getBean(LocalContainerEntityManagerFactoryBean.class);
-		if(System.getProperty("ambiente").equalsIgnoreCase("Teste")){
+		if(isTesteEnvironment()){
 			DataSource source = context.getBean("celsDataSource",DataSource.class);
 			try {
 				initializeTesteSql(source);
@@ -115,7 +119,7 @@ public class PersistenceConfigs implements ApplicationContextAware {
 	Properties additionalProperties() {
 		Properties properties = new Properties();
 		properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
-		if(System.getProperty("ambiente").equalsIgnoreCase("Teste")){
+		if(isTesteEnvironment()){
 			properties.setProperty("hibernate.dialect","org.hibernate.dialect.H2Dialect");
 		}else {
 			properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
