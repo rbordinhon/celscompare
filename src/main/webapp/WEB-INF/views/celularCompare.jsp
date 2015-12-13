@@ -4,7 +4,7 @@
 <html ng-app="celsCompareApp">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Celular Info</title>
+<title>Celular Comparação</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js">
 	
