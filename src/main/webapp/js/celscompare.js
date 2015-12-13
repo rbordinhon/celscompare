@@ -47,13 +47,13 @@ celsCompareApp.controller('celularList',['$scope', 'celscompareService', functio
 		   
 	  });
 	  $scope.addCompare = function(compareRow){
-		    if($scope.celularesComparacao.length > 1){
+		    if($scope.celularesComparacao.length > 1 || $scope.celularesComparacao == null){
 		    	$scope.celularesComparacao = [];
 		    	document.getElementById('compare').disabled='disabled';
 		    }
-			if($scope.celularesComparacao.length == 1){
-				if($scope.celularesComparacao.idCelular == compareRow.idCelular){
-					Alert("O celular já foi selecionado para comparação");
+		    if($scope.celularesComparacao.length == 1){
+				if($scope.celularesComparacao[0].idCelular == compareRow.idCelular){
+					alert("O celular já foi selecionado para comparação");
 					return;
 				}
 			}
