@@ -23,8 +23,13 @@
 <body ng-controller="favoritoList">
 	<div class="container">
 		<div class="page-header">
-			<h1>Favoritos</h1>
+			
+			<h1  >Favoritos
+			<form style="float:right" action="/celularCompare">
+				<button   type="submit" class="btn btn-default" data-dismiss="modal">Voltar</button>
+			</form></h1>
 		</div>
+			
 		
 
 		<table class="table">
