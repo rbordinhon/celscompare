@@ -46,7 +46,7 @@ public class PersistenceConfigs implements ApplicationContextAware {
 		
 		}else {
 			dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-			dataSource.setUrl("jdbc:mysql://localhost:3306/celscompare");
+			dataSource.setUrl("jdbc:mysql://127.3.112.2:3306/celscompare");
 			dataSource.setUsername("adminz9kFsCv");
 			dataSource.setPassword("l6VXbFh_z8DG");
 			dataSource.setInitialSize(5);
