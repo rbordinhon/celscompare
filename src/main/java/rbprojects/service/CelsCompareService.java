@@ -1,9 +1,9 @@
 package rbprojects.service;
 
-import rbprojects.dto.CelularInfoVO;
-import rbprojects.dto.ComparativoCelularVO;
+import rbprojects.dto.CelularInfoDTO;
+import rbprojects.dto.ComparativoCelularDTO;
 
-public interface CelularCompareService {
+public interface CelsCompareService {
 
 	static final String CAMERA_TRASEIRA_RESOLUCAO = "Câmara Traseira Resolução";
 	static final String CAMERA_FRONTAL_RESOLUCAO = "Câmara Frontal Resolução";
@@ -11,13 +11,13 @@ public interface CelularCompareService {
 	static final String MEMORIA_INTERNA = "Memória Interna";
 	static final String TAMANHO_DA_TELA = "Tamanho da Tela";
 	
-	public CelularInfoVO[] findAllInfos();
+	public CelularInfoDTO[] findAllInfos();
 
-	ComparativoCelularVO compareCels(long idCelular1, long idCelular2);
+	ComparativoCelularDTO compareCels(long idCelular1, long idCelular2);
 
 	void addFavorito(long idCelular);
 
-	CelularInfoVO[] findAllInfosOrderByFavorito();
+	CelularInfoDTO[] findAllInfosOrderByFavorito();
 	
 
 }

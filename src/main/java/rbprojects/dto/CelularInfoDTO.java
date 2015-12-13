@@ -1,6 +1,6 @@
 package rbprojects.dto;
 
-public class CelularInfoVO {
+public class CelularInfoDTO {
   public long idCelular;	
   public String modelo;
   public long votacoes;

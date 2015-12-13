@@ -1,6 +1,6 @@
 package rbprojects.dto;
 
-public class RequisitoComparativoVo {
+public class RequisitoComparativoDTO {
 	public String descricao;
 	public String valorCelular1;
 	public String valorCelular2;

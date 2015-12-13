@@ -2,11 +2,11 @@ package rbprojects.dto;
 
 import java.text.DecimalFormat;
 
-public class RequisitoCelularVO {
+public class RequisitoCelularDTO {
 	public String descricao;
 	public Number valor;
 	
-	public Boolean isBetter(RequisitoCelularVO vo){
+	public Boolean isBetter(RequisitoCelularDTO vo){
 		if(valor == null){
 			if(vo.valor != null){
 				return false;

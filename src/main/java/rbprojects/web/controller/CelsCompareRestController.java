@@ -7,28 +7,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import rbprojects.dto.CelularInfoVO;
-import rbprojects.dto.ComparativoCelularVO;
-import rbprojects.service.CelularCompareService;
+import rbprojects.dto.CelularInfoDTO;
+import rbprojects.dto.ComparativoCelularDTO;
+import rbprojects.service.CelsCompareService;
 
 @RestController
-public class CelsCompareController {
+public class CelsCompareRestController {
 
 	@Autowired
-	private CelularCompareService serviceCtrl;
+	private CelsCompareService serviceCtrl;
 
 	@RequestMapping(value = "/findAll", method = RequestMethod.POST, produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody CelularInfoVO[]  getInfos() {
+	public @ResponseBody CelularInfoDTO[]  getInfos() {
 		return serviceCtrl.findAllInfos();
 	}
 	
 	@RequestMapping(value = "/compare/{idCelular1}/{idCelular2}", method = RequestMethod.POST, produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ComparativoCelularVO  compare(@PathVariable long idCelular1,@PathVariable long idCelular2) {
+	public @ResponseBody ComparativoCelularDTO  compare(@PathVariable long idCelular1,@PathVariable long idCelular2) {
 		return serviceCtrl.compareCels(idCelular1, idCelular2);
 	}
 	
 	@RequestMapping(value = "/findAllOrderByFavorito", method = RequestMethod.POST, produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody CelularInfoVO[]  findAllOrderByFavorito() {
+	public @ResponseBody CelularInfoDTO[]  findAllOrderByFavorito() {
 		return serviceCtrl.findAllInfosOrderByFavorito();
 	}
 	

@@ -13,26 +13,26 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import rbprojects.domain.CelularInfo;
-import rbprojects.dto.CelularInfoVO;
-import rbprojects.dto.ComparativoCelularVO;
-import rbprojects.dto.RequisitoCelularVO;
-import rbprojects.dto.RequisitoComparativoVo;
+import rbprojects.dto.CelularInfoDTO;
+import rbprojects.dto.ComparativoCelularDTO;
+import rbprojects.dto.RequisitoCelularDTO;
+import rbprojects.dto.RequisitoComparativoDTO;
 
 @Service
 @Transactional()
-public class CelularCompareServiceImpl implements CelularCompareService {
+public class CelsCompareServiceImpl implements CelsCompareService {
 	@Autowired
-	private CelularCompareServiceHelper helper;
+	private CelsCompareServiceHelper helper;
 
 	@PersistenceContext
 	public EntityManager manager;
 
 	@Override
-	public CelularInfoVO[] findAllInfos() {
+	public CelularInfoDTO[] findAllInfos() {
 		javax.persistence.Query qury = manager.createQuery("select o from CelularInfo o", CelularInfo.class);
 
 		List<CelularInfo> infos = qury.getResultList();
-		CelularInfoVO[] returnValue = new CelularInfoVO[infos.size()];
+		CelularInfoDTO[] returnValue = new CelularInfoDTO[infos.size()];
 		for (int i = 0; i < returnValue.length; i++) {
 			returnValue[i] = helper.createCelularInfo(infos.get(i));
 		}
@@ -41,32 +41,32 @@ public class CelularCompareServiceImpl implements CelularCompareService {
 	}
 
 	@Override
-	public ComparativoCelularVO compareCels(long idCelular1, long idCelular2) {
-		final ComparativoCelularVO comparativo = new ComparativoCelularVO();
-		CelularInfoVO info1 = helper.createCelularInfo(idCelular1);
-		CelularInfoVO info2 = helper.createCelularInfo(idCelular2);
+	public ComparativoCelularDTO compareCels(long idCelular1, long idCelular2) {
+		final ComparativoCelularDTO comparativo = new ComparativoCelularDTO();
+		CelularInfoDTO info1 = helper.createCelularInfo(idCelular1);
+		CelularInfoDTO info2 = helper.createCelularInfo(idCelular2);
 		comparativo.descricaoCelular1 = info1.modelo;
 		comparativo.descricaoCelular2 = info2.modelo;
-		RequisitoCelularVO[] requisitosCel1 = helper.findRequisitosByIdCelular(idCelular1);
-		final Map<String, RequisitoCelularVO> requMap = new HashMap();
+		RequisitoCelularDTO[] requisitosCel1 = helper.findRequisitosByIdCelular(idCelular1);
+		final Map<String, RequisitoCelularDTO> requMap = new HashMap();
 		for (int i = 0; i < requisitosCel1.length; i++) {
 			requMap.put(requisitosCel1[i].descricao, requisitosCel1[i]);
 		}
-		RequisitoCelularVO[] requisitosCel2 = helper.findRequisitosByIdCelular(idCelular2);
+		RequisitoCelularDTO[] requisitosCel2 = helper.findRequisitosByIdCelular(idCelular2);
 
-		List<RequisitoComparativoVo> requs = new ArrayList();
-		for (RequisitoCelularVO requisitoInfo2 : requisitosCel2) {
-			final RequisitoComparativoVo vo = new RequisitoComparativoVo();
+		List<RequisitoComparativoDTO> requs = new ArrayList();
+		for (RequisitoCelularDTO requisitoInfo2 : requisitosCel2) {
+			final RequisitoComparativoDTO vo = new RequisitoComparativoDTO();
 			vo.descricao = requisitoInfo2.descricao;
 			requs.add(vo);
-			RequisitoCelularVO requInfo1 = requMap.get(requisitoInfo2.descricao);
+			RequisitoCelularDTO requInfo1 = requMap.get(requisitoInfo2.descricao);
 			vo.valorCelular1 = requInfo1.getValorDisplay();
 			vo.valorCelular2 = requisitoInfo2.getValorDisplay();
 			vo.celular1emelhor = requInfo1.isBetter(requisitoInfo2);
 			vo.celular2emelhor = requisitoInfo2.isBetter(requInfo1);
 		}
 
-		comparativo.requisitos = requs.toArray(new RequisitoComparativoVo[requs.size()]);
+		comparativo.requisitos = requs.toArray(new RequisitoComparativoDTO[requs.size()]);
 		return comparativo;
 
 	}
@@ -80,12 +80,12 @@ public class CelularCompareServiceImpl implements CelularCompareService {
 	}
 
 	@Override
-	public CelularInfoVO[] findAllInfosOrderByFavorito() {
+	public CelularInfoDTO[] findAllInfosOrderByFavorito() {
 		javax.persistence.Query qury = manager.createQuery("select o from CelularInfo o order by o.favorito desc",
 				CelularInfo.class);
 
 		List<CelularInfo> infos = qury.getResultList();
-		CelularInfoVO[] returnValue = new CelularInfoVO[infos.size()];
+		CelularInfoDTO[] returnValue = new CelularInfoDTO[infos.size()];
 		for (int i = 0; i < returnValue.length; i++) {
 			returnValue[i] = helper.createCelularInfo(infos.get(i));
 		}

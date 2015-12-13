@@ -1,6 +1,6 @@
 package rbprojects.dto;
 
-public class RequisitoCelularMemoriaVO extends RequisitoCelularVO{
+public class RequisitoCelularMemoriaDTO extends RequisitoCelularDTO{
 
 	
 	@Override

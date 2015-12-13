@@ -7,16 +7,16 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import rbprojects.config.CelsCompareConfig;
 import rbprojects.config.PersistenceConfigs;
-import rbprojects.dto.CelularInfoVO;
-import rbprojects.dto.ComparativoCelularVO;
-import rbprojects.dto.RequisitoCelularVO;
-import rbprojects.dto.RequisitoComparativoVo;
+import rbprojects.dto.CelularInfoDTO;
+import rbprojects.dto.ComparativoCelularDTO;
+import rbprojects.dto.RequisitoCelularDTO;
+import rbprojects.dto.RequisitoComparativoDTO;
 
 public class CelularCompareServiceTeste {
 
 	private static AnnotationConfigApplicationContext ctx;
-	private static CelularCompareService service;
-	private static CelularCompareServiceHelper helper;
+	private static CelsCompareService service;
+	private static CelsCompareServiceHelper helper;
 	
 	@BeforeClass
 	public static void  beforeClass(){
@@ -26,8 +26,8 @@ public class CelularCompareServiceTeste {
 			ctx.register(CelsCompareConfig.class);
 			ctx.register(PersistenceConfigs.class);
 			ctx.refresh();
-			service = ctx.getBean(CelularCompareService.class);
-			helper = ctx.getBean(CelularCompareServiceHelper.class); 
+			service = ctx.getBean(CelsCompareService.class);
+			helper = ctx.getBean(CelsCompareServiceHelper.class); 
 		}
 	}
 	
@@ -47,13 +47,13 @@ public class CelularCompareServiceTeste {
 		voteFavorito(5, 5);
 	    voteFavorito(3, 1);
 	    voteFavorito(1, 2);
-		CelularInfoVO vo = helper.createCelularInfo(6);
+		CelularInfoDTO vo = helper.createCelularInfo(6);
 		Assert.assertEquals(11,vo.votacoes);    
 		Assert.assertEquals("LG G4 Stylus HDTV 16 GB",vo.modelo);
 		Assert.assertEquals(6,vo.idCelular);    
 		   
 	    
-	    CelularInfoVO[] vos = service.findAllInfosOrderByFavorito();
+	    CelularInfoDTO[] vos = service.findAllInfosOrderByFavorito();
 	    int i = 0;
 	    Assert.assertEquals(20, vos[i++].votacoes);    
 	    Assert.assertEquals(15, vos[i++].votacoes);    
@@ -81,33 +81,33 @@ public class CelularCompareServiceTeste {
 	 */
 	@Test
 	public void testeBuscaCelulares(){
-	     CelularInfoVO[] infos  = service.findAllInfos();
+	     CelularInfoDTO[] infos  = service.findAllInfos();
 	     Assert.assertTrue("Numero de elementos da busca invalido", infos.length== 10); 
 	     final int item = 5;
-	     CelularInfoVO info = infos[item-1];
+	     CelularInfoDTO info = infos[item-1];
 	     Assert.assertEquals(info.modelo, "Motorola Moto X Play Colors 32GB");
 	     
-	     RequisitoCelularVO[] req = helper.findRequisitosByIdCelular(info.idCelular);
+	     RequisitoCelularDTO[] req = helper.findRequisitosByIdCelular(info.idCelular);
 	     Assert.assertTrue("Numero de requisitos da busca invalido", req.length== 5);
 	     int requisitosInformados = 0;
-	     for (RequisitoCelularVO requisitoCelularVO : req) {
-		    if(requisitoCelularVO.descricao.equals(CelularCompareService.CAMERA_FRONTAL_RESOLUCAO)){
+	     for (RequisitoCelularDTO requisitoCelularVO : req) {
+		    if(requisitoCelularVO.descricao.equals(CelsCompareService.CAMERA_FRONTAL_RESOLUCAO)){
 		    	requisitosInformados++;
 		    	Assert.assertEquals(requisitoCelularVO.valor,5d);
 			}
-		    if(requisitoCelularVO.descricao.equals(CelularCompareService.CAMERA_TRASEIRA_RESOLUCAO)){
+		    if(requisitoCelularVO.descricao.equals(CelsCompareService.CAMERA_TRASEIRA_RESOLUCAO)){
 		       	requisitosInformados++;
 				Assert.assertEquals(requisitoCelularVO.valor,21d);
 			}
-		    if(requisitoCelularVO.descricao.equals(CelularCompareService.TAMANHO_DA_TELA)){
+		    if(requisitoCelularVO.descricao.equals(CelsCompareService.TAMANHO_DA_TELA)){
 		       	requisitosInformados++;
 				Assert.assertEquals(requisitoCelularVO.valor,5.5d);
 			}
-		    if(requisitoCelularVO.descricao.equals(CelularCompareService.PRECO)){
+		    if(requisitoCelularVO.descricao.equals(CelsCompareService.PRECO)){
 		       	requisitosInformados++;
 				Assert.assertEquals(requisitoCelularVO.valor,1301.52d);
 			}
-		    if(requisitoCelularVO.descricao.equals(CelularCompareService.MEMORIA_INTERNA)){
+		    if(requisitoCelularVO.descricao.equals(CelsCompareService.MEMORIA_INTERNA)){
 		       	requisitosInformados++;
 				Assert.assertEquals(requisitoCelularVO.valor,32.0d);
 			}
@@ -120,7 +120,7 @@ public class CelularCompareServiceTeste {
 	
 	@Test
 	public void testeCompareREquisitos(){
-	     ComparativoCelularVO comparativo = service.compareCels(5, 2);
+	     ComparativoCelularDTO comparativo = service.compareCels(5, 2);
 		 Assert.assertEquals(comparativo.descricaoCelular1,"Motorola Moto X Play Colors 32GB");
 		 Assert.assertEquals(comparativo.descricaoCelular2,"Samsung Galaxy S6 Edge");
 		 /**
@@ -130,44 +130,44 @@ insert into celular_info(ID_CELULAR_INFO,DS_MODELO,NR_MEMORIA,NR_CAMERA_TRASEIRA
 values(5,'Motorola Moto X Play Colors 32GB',32,21,5.5, 1301.52,5);
 		  */
 		 
-		 RequisitoComparativoVo[] req = comparativo.requisitos;
+		 RequisitoComparativoDTO[] req = comparativo.requisitos;
 	     Assert.assertTrue("Numero de requisitos da busca invalido", req.length== 5);
 	     int requisitosInformados = 0;
-	     for (RequisitoComparativoVo requisitoCelularVO : req) {
-		    if(requisitoCelularVO.descricao.equals(CelularCompareService.CAMERA_FRONTAL_RESOLUCAO)){
+	     for (RequisitoComparativoDTO requisitoCelularVO : req) {
+		    if(requisitoCelularVO.descricao.equals(CelsCompareService.CAMERA_FRONTAL_RESOLUCAO)){
 		    	requisitosInformados++;
-		       	Assert.assertEquals(5d,requisitoCelularVO.valorCelular1);
-		    	Assert.assertNull(requisitoCelularVO.valorCelular2);
+		       	Assert.assertEquals("5 Mp",requisitoCelularVO.valorCelular1);
+		    	Assert.assertEquals("",requisitoCelularVO.valorCelular2);
 		    	Assert.assertEquals(true, requisitoCelularVO.celular1emelhor);
 		    	Assert.assertEquals(false, requisitoCelularVO.celular2emelhor);
 		    	
 		 	}
-		    if(requisitoCelularVO.descricao.equals(CelularCompareService.CAMERA_TRASEIRA_RESOLUCAO)){
+		    if(requisitoCelularVO.descricao.equals(CelsCompareService.CAMERA_TRASEIRA_RESOLUCAO)){
 		       	requisitosInformados++;
-		    	Assert.assertEquals(21d,requisitoCelularVO.valorCelular1);
-		    	Assert.assertEquals(27.7d,requisitoCelularVO.valorCelular2);
+		    	Assert.assertEquals("21 Mp",requisitoCelularVO.valorCelular1);
+		    	Assert.assertEquals("27,7 Mp",requisitoCelularVO.valorCelular2);
 		      	Assert.assertEquals(false, requisitoCelularVO.celular1emelhor);
 		    	Assert.assertEquals(true, requisitoCelularVO.celular2emelhor);
 		    }
-		    if(requisitoCelularVO.descricao.equals(CelularCompareService.TAMANHO_DA_TELA)){
+		    if(requisitoCelularVO.descricao.equals(CelsCompareService.TAMANHO_DA_TELA)){
 		       	requisitosInformados++;
-		       	Assert.assertEquals(5.5d,requisitoCelularVO.valorCelular1);
-		    	Assert.assertEquals(5.1d,requisitoCelularVO.valorCelular2);
+		       	Assert.assertEquals("5.5",requisitoCelularVO.valorCelular1);
+		    	Assert.assertEquals("5.1",requisitoCelularVO.valorCelular2);
 		    	Assert.assertEquals(true, requisitoCelularVO.celular1emelhor);
 		    	Assert.assertEquals(false, requisitoCelularVO.celular2emelhor);
 		  
 		    }
-		    if(requisitoCelularVO.descricao.equals(CelularCompareService.PRECO)){
+		    if(requisitoCelularVO.descricao.equals(CelsCompareService.PRECO)){
 		       	requisitosInformados++;
-		       	Assert.assertEquals(1301.52d,requisitoCelularVO.valorCelular1);
-		    	Assert.assertEquals(2199.12d,requisitoCelularVO.valorCelular2);
+		       	Assert.assertEquals("R$ 1.301,52",requisitoCelularVO.valorCelular1);
+		    	Assert.assertEquals("R$ 2.199,12",requisitoCelularVO.valorCelular2);
 		    	Assert.assertEquals(true, requisitoCelularVO.celular1emelhor);
 		    	Assert.assertEquals(false, requisitoCelularVO.celular2emelhor);
 			}
-		    if(requisitoCelularVO.descricao.equals(CelularCompareService.MEMORIA_INTERNA)){
+		    if(requisitoCelularVO.descricao.equals(CelsCompareService.MEMORIA_INTERNA)){
 		       	requisitosInformados++;
-		    	Assert.assertEquals(32d,requisitoCelularVO.valorCelular1);
-		    	Assert.assertEquals(32d,requisitoCelularVO.valorCelular2);
+		    	Assert.assertEquals("32 GB",requisitoCelularVO.valorCelular1);
+		    	Assert.assertEquals("32 GB",requisitoCelularVO.valorCelular2);
 		    	Assert.assertEquals(false, requisitoCelularVO.celular1emelhor);
 		    	Assert.assertEquals(false, requisitoCelularVO.celular2emelhor);
 			}
