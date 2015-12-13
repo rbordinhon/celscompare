@@ -12,7 +12,7 @@ celsCompareApp.service('celscompareService',['$http','$location',function($http,
 		        .then(function (response) {
 		        	callBack(response.data);
 		         },function(response){
-		        	 alert('Erro status'+response.status);
+		        	 alert('Erro status '+response.status);
 		         });
 		
 	}
@@ -21,7 +21,7 @@ celsCompareApp.service('celscompareService',['$http','$location',function($http,
 		        .then(function (response) {
 		        	callBack(response.data);
 		         },function(response){
-		        	 alert('Erro status'+response.status);
+		        	 alert('Erro status '+response.status);
 		         });
 		
 	}
@@ -30,7 +30,7 @@ celsCompareApp.service('celscompareService',['$http','$location',function($http,
 		        .then(function (response) {
 		        	callBack(response.data);
 		         },function(response){
-		        	 alert('Erro status'+response.status);
+		        	 alert('Erro status '+response.status);
 		         });
 		
 	}
@@ -51,7 +51,13 @@ celsCompareApp.controller('celularList',['$scope', 'celscompareService', functio
 		    	$scope.celularesComparacao = [];
 		    	document.getElementById('compare').disabled='disabled';
 		    }
-			$scope.celularesComparacao.push(compareRow);
+			if($scope.celularesComparacao.length == 1){
+				if($scope.celularesComparacao.idCelular == compareRow.idCelular){
+					Alert("O celular já foi selecionado para comparação");
+					return;
+				}
+			}
+		    $scope.celularesComparacao.push(compareRow);
 			if($scope.celularesComparacao.length == 2){
 				document.getElementById('compare').disabled='';
 			}
@@ -60,7 +66,7 @@ celsCompareApp.controller('celularList',['$scope', 'celscompareService', functio
 		  document.getElementById('formFavorito#'+ idCelular).submit();
 	  }
 	  $scope.compare = function(){
-		  celscompareService.buscaComparativos($scope.celularesComparacao[0].idCelular,
+		   celscompareService.buscaComparativos($scope.celularesComparacao[0].idCelular,
 				  $scope.celularesComparacao[1].idCelular, function(response){
 			  $scope.comparativo =   response;
 			  $('#comparativo').modal('show');
