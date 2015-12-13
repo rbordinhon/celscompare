@@ -9,9 +9,12 @@
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js">
 	
 </script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="/js/celscompare.js">
 	
 </script>
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
 	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
@@ -35,8 +38,8 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Modelo</th>
-					<th>Usuarios</th>
+					<th>Celular</th>
+					<th>Usuários</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -64,43 +67,7 @@
 
 	</div>
 
-	<!-- Modal -->
-	<div class="modal fade" id="comparativo" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">Comparativo</h4>
-				</div>
-				<div class="modal-body">
-					<table class="table">
-						<thead>
-							<tr>
-							    <th>Requisito</th>
-								<th>{{comparativo.descricaoCelular1}}</th>
-								<th>{{comparativo.descricaoCelular2}}</th>
-							</tr>
-						</thead>
-						<tbody>
-							 
-							<tr ng-repeat="requisito in comparativo.requisitos">
-								<td width="40%">{{requisito.descricao}}</td>
-								<td width="30%">{{requisito.valorCelular1}}{{requisito.celular1emelhor ? '  (Melhor)':''}}</td>
-								<td width="30%">{{requisito.valorCelular2}}{{requisito.celular2emelhor ? '  (Melhor)':''}}</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 
 </body>
 </html>

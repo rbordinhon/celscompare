@@ -18,7 +18,11 @@ table {
     border-spacing: 0px;
     border-collapse: collapse;
 }
-.modal-dialog {
-    width: 1000px;
-    margin: 30px auto;
+#alert_dialog{
+	width: 450px;
+	
 }
+#aguarde_dialog{
+		width: 350px;
+}
+

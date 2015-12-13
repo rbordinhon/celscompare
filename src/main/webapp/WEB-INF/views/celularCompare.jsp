@@ -9,8 +9,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js">
 	
 </script>
-<script src="/js/celscompare.js" charset="UTF-8" type="text/javascript" >
-</script>
+
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -19,6 +18,8 @@
 	integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
 	crossorigin="anonymous">
 	
+</script>
+<script src="/js/celscompare.js" charset="UTF-8" type="text/javascript" >
 </script>
 <style type="text/css">
 #addCompare {
@@ -29,6 +30,9 @@
 	float: left;
 	position: relative;
 	position: relative;
+}
+#comparativo_dialog{
+ width: 1000px;
 }
 </style>
 <link rel="stylesheet"
@@ -58,7 +62,7 @@
 					<td width="45%">{{celularesComparacao[1].modelo}}</td>
 					<td width="10%"><button class="btn btn-primary"
 							data-toggle="modal" ng-click="compare()" disabled="disabled"
-							id="compare" type="button" class="btn btn-primary">Comparar</button></td>
+							id="compare" type="button" class="btn btn-primary">OK</button></td>
 				</tr>
 			</tbody>
 		</table>
@@ -75,13 +79,13 @@
 				<tr ng-repeat="phone in celulares">
 					<td width="80%">{{phone.modelo}}</td>
 					<td width="10%"><span id="addCompare"
-						class="glyphicon glyphicon-plus" ng-click="addCompare(phone)"></span></td>
+						class="glyphicon glyphicon-plus-sign" ng-click="addCompare(phone)"></span></td>
 
 					<td width="10%">
 						<form id="{{'formFavorito#'+ phone.idCelular}}"
-							action="{{'addFavorito/'+ phone.idCelular}}">
+							action="listaFavoritos">
 							<span id="addCompare" ng-click="favorito(phone.idCelular)"
-								class="glyphicon glyphicon-ok"></span>
+								class="glyphicon glyphicon-ok-circle"></span>
 
 						</form>
 					</td>
@@ -108,7 +112,7 @@
 	<!-- Modal -->
 	<div class="modal fade" id="comparativo" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
+		<div id="comparativo_dialog" class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
@@ -142,6 +146,30 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="alert" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div id="alert_dialog" class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Celular Comparação</h4>
+				</div>
+				<div class="modal-body">
+					<h5>{{alertaMensagem}}</h5>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
 
 </body>
 </html>

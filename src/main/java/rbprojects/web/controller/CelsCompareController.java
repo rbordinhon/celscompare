@@ -32,6 +32,11 @@ public class CelsCompareController {
 		return serviceCtrl.findAllInfosOrderByFavorito();
 	}
 	
+	@RequestMapping(value = "/addFavorito/{idCelular1}", method = RequestMethod.POST)
+	public @ResponseBody String  addFavorito(@PathVariable long idCelular1) {
+		serviceCtrl.addFavorito(idCelular1);
+		return "{}";
+	}
 	
 
 }
