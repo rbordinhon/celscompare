@@ -20,7 +20,7 @@ public class PageController {
 		return  "favoritos";
 	}
 	
-	@RequestMapping(value = "/celularCompare", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String  celulares() {
 		return  "celularCompare";
 	}
