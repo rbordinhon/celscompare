@@ -1,6 +1,8 @@
 package rbprojects.dto;
 
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class RequisitoCelularDTO {
 	public String descricao;
@@ -26,8 +28,9 @@ public class RequisitoCelularDTO {
 		if(valor == null){
 			return "";
 		}
-		DecimalFormat df = new DecimalFormat();
-		return df.format(valor.doubleValue());
+		Locale locale  = new Locale("pt", "BR");
+		DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getNumberInstance(locale);
+		return decimalFormat.format(valor.doubleValue());
 		
 	}
 	
