@@ -1,7 +1,7 @@
 /**
  * 
  */
-
+// Encoding: ISO-8859-1
 var celsCompareApp = angular.module('celsCompareApp', []);
 
 

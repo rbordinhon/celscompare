@@ -9,7 +9,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js">
 	
 </script>
-<script src="/js/celscompare.js">
+<script src="/js/celscompare.js" charset="UTF-8" type="text/javascript" >
 </script>
 
 <script
