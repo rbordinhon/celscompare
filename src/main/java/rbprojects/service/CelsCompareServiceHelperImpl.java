@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import rbprojects.domain.CelularInfo;
 import rbprojects.dto.CelularInfoDTO;
 import rbprojects.dto.RequisitoCelularMemoriaDTO;
-import rbprojects.dto.RequisitoCelularMpDTO;
+import rbprojects.dto.RequisitoCelularCameraMpDTO;
 import rbprojects.dto.RequisitoCelularPrecoDTO;
 import rbprojects.dto.RequisitoCelularTelaDTO;
 import rbprojects.dto.RequisitoCelularDTO;
@@ -70,7 +70,7 @@ public class CelsCompareServiceHelperImpl implements CelsCompareServiceHelper {
 		if (name.equalsIgnoreCase(CelsCompareService.PRECO)) {
 			requ = new RequisitoCelularPrecoDTO();
 		} else if(name.equalsIgnoreCase(CelsCompareService.CAMERA_FRONTAL_RESOLUCAO) || name.equalsIgnoreCase(CelsCompareService.CAMERA_TRASEIRA_RESOLUCAO)){
-			requ = new RequisitoCelularMpDTO();
+			requ = new RequisitoCelularCameraMpDTO();
 		} else if(name.equalsIgnoreCase(CelsCompareService.TAMANHO_DA_TELA)){
 			requ = new RequisitoCelularTelaDTO();
 		}else if(name.equalsIgnoreCase(CelsCompareService.MEMORIA_INTERNA)){

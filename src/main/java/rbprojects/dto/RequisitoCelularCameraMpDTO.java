@@ -1,6 +1,6 @@
 package rbprojects.dto;
 
-public class RequisitoCelularMpDTO extends RequisitoCelularDTO{
+public class RequisitoCelularCameraMpDTO extends RequisitoCelularDTO{
 
 	@Override
 	public String getValorDisplay() {

@@ -5,8 +5,8 @@ import rbprojects.dto.ComparativoCelularDTO;
 
 public interface CelsCompareService {
 
-	static final String CAMERA_TRASEIRA_RESOLUCAO = "Câmara Traseira Resolução";
-	static final String CAMERA_FRONTAL_RESOLUCAO = "Câmara Frontal Resolução";
+	static final String CAMERA_TRASEIRA_RESOLUCAO = "Câmera Traseira Resolução";
+	static final String CAMERA_FRONTAL_RESOLUCAO = "Câmera Frontal Resolução";
 	static final String PRECO = "Preço";
 	static final String MEMORIA_INTERNA = "Memória Interna";
 	static final String TAMANHO_DA_TELA = "Tamanho da Tela";
