@@ -2,7 +2,6 @@ package rbprojects.service;
 
 import rbprojects.dto.CelularInfoVO;
 import rbprojects.dto.ComparativoCelularVO;
-import rbprojects.dto.RequisitoCelularVO;
 
 public interface CelularCompareService {
 
