@@ -1,6 +1,6 @@
 package rbprojects.dto;
 
-public class RequisitoCelularPrecoVo extends RequisitoCelularVO{
+public class RequisitoCelularMemoriaVO extends RequisitoCelularVO{
 
 	public Boolean isBetter(RequisitoCelularVO vo){
 		if(valor == null || vo.valor == null || vo.valor.equals(valor)){
@@ -14,7 +14,7 @@ public class RequisitoCelularPrecoVo extends RequisitoCelularVO{
 		if(valor == null){
 			return "";
 		}
-		final String display = "R$ "+ super.getValorDisplay() ;
+		final String display = super.getValorDisplay() +" GB" ;
 		return display;
 	}
 }

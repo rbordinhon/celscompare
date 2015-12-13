@@ -42,7 +42,7 @@
 <body ng-controller="celularList">
 	<div class="container">
 		<div class="page-header">
-			<h1>Celular Comparacao</h1>
+			<h1>Celular Comparação</h1>
 		</div>
 		<table class="table">
 			<thead>
@@ -66,7 +66,7 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Modelo</th>
+					<th>Celular</th>
 					<th>Comparar</th>
 					<th>Favorito</th>
 				</tr>

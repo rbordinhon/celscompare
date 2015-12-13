@@ -9,7 +9,10 @@ import org.springframework.stereotype.Service;
 
 import rbprojects.domain.CelularInfo;
 import rbprojects.dto.CelularInfoVO;
+import rbprojects.dto.RequisitoCelularMemoriaVO;
+import rbprojects.dto.RequisitoCelularMpVO;
 import rbprojects.dto.RequisitoCelularPrecoVo;
+import rbprojects.dto.RequisitoCelularTelaVO;
 import rbprojects.dto.RequisitoCelularVO;
 import static rbprojects.service.CelularCompareService.*;
 
@@ -38,7 +41,7 @@ public class CelularCompareServiceHelperImpl implements CelularCompareServiceHel
 		int reqIt = 0;
 		requisitos[reqIt++] = createRequisito(TAMANHO_DA_TELA, info.getNrTelaTamanho());
 		requisitos[reqIt++] = createRequisito(MEMORIA_INTERNA, info.getMemoria());
-		requisitos[reqIt++] = createRequisito(CAMERA_FRONTAL_RESOLUCAO, info.getResolucacoCameraDronta());
+		requisitos[reqIt++] = createRequisito(CAMERA_FRONTAL_RESOLUCAO, info.getResolucacoCameraFrontal());
 		requisitos[reqIt++] = createRequisito(CAMERA_TRASEIRA_RESOLUCAO, info.getResolucacoCameraTraseira());
 		requisitos[reqIt++] = createRequisito(PRECO, info.getPreco());
 		return requisitos;
@@ -66,6 +69,12 @@ public class CelularCompareServiceHelperImpl implements CelularCompareServiceHel
 		final RequisitoCelularVO requ;
 		if (name.equalsIgnoreCase(CelularCompareService.PRECO)) {
 			requ = new RequisitoCelularPrecoVo();
+		} else if(name.equalsIgnoreCase(CelularCompareService.CAMERA_FRONTAL_RESOLUCAO) || name.equalsIgnoreCase(CelularCompareService.CAMERA_TRASEIRA_RESOLUCAO)){
+			requ = new RequisitoCelularMpVO();
+		} else if(name.equalsIgnoreCase(CelularCompareService.TAMANHO_DA_TELA)){
+			requ = new RequisitoCelularTelaVO();
+		}else if(name.equalsIgnoreCase(CelularCompareService.MEMORIA_INTERNA)){
+			requ = new RequisitoCelularMemoriaVO();
 		} else {
 			requ = new RequisitoCelularVO();
 		}

@@ -6,10 +6,10 @@ import rbprojects.dto.RequisitoCelularVO;
 
 public interface CelularCompareService {
 
-	static final String CAMERA_TRASEIRA_RESOLUCAO = "Camera Traseira Resolucao";
-	static final String CAMERA_FRONTAL_RESOLUCAO = "Camera Frontal Resolucao";
-	static final String PRECO = "Preco";
-	static final String MEMORIA_INTERNA = "Memoria Interna";
+	static final String CAMERA_TRASEIRA_RESOLUCAO = "Câmara Traseira Resolução";
+	static final String CAMERA_FRONTAL_RESOLUCAO = "Câmara Frontal Resolução";
+	static final String PRECO = "Preço";
+	static final String MEMORIA_INTERNA = "Memória Interna";
 	static final String TAMANHO_DA_TELA = "Tamanho da Tela";
 	
 	public CelularInfoVO[] findAllInfos();

@@ -2,10 +2,11 @@ package rbprojects.dto;
 
 public class RequisitoComparativoVo {
 	public String descricao;
-	public Number valorCelular1;
-	public Number valorCelular2;
+	public String valorCelular1;
+	public String valorCelular2;
 	public boolean celular1emelhor;
 	public boolean celular2emelhor;
+	
 
 	@Override
 	public String toString() {

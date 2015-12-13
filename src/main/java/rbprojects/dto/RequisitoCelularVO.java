@@ -1,5 +1,7 @@
 package rbprojects.dto;
 
+import java.text.DecimalFormat;
+
 public class RequisitoCelularVO {
 	public String descricao;
 	public Number valor;
@@ -18,6 +20,15 @@ public class RequisitoCelularVO {
 			return valor.doubleValue() > vo.valor.doubleValue()  ;
 		}
 		return true;
+	}
+	
+	public String getValorDisplay(){
+		if(valor == null){
+			return "";
+		}
+		DecimalFormat df = new DecimalFormat();
+		return df.format(valor.doubleValue());
+		
 	}
 	
 	@Override

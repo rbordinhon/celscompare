@@ -74,7 +74,7 @@ public class CelularInfo {
 		this.nrTelaTamanho = nrTelaTamanho;
 	}
 
-	public Double getResolucacoCameraDronta() {
+	public Double getResolucacoCameraFrontal() {
 		return resolucacoCameraDronta;
 	}
 

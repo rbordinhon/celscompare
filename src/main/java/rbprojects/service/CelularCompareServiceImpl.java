@@ -60,8 +60,8 @@ public class CelularCompareServiceImpl implements CelularCompareService {
 			vo.descricao = requisitoInfo2.descricao;
 			requs.add(vo);
 			RequisitoCelularVO requInfo1 = requMap.get(requisitoInfo2.descricao);
-			vo.valorCelular1 = requInfo1.valor;
-			vo.valorCelular2 = requisitoInfo2.valor;
+			vo.valorCelular1 = requInfo1.getValorDisplay();
+			vo.valorCelular2 = requisitoInfo2.getValorDisplay();
 			vo.celular1emelhor = requInfo1.isBetter(requisitoInfo2);
 			vo.celular2emelhor = requisitoInfo2.isBetter(requInfo1);
 		}
