@@ -9,8 +9,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js">
 	
 </script>
-<script src="js/celscompare.js">
-	
+<script src="/js/celscompare.js">
 </script>
 
 <script
@@ -37,7 +36,7 @@
 	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
 	crossorigin="anonymous">
 	</link>
-<link rel="stylesheet" href="css/celscompare.css">
+<link rel="stylesheet" href="/css/celscompare.css">
 </link>
 </head>
 <body ng-controller="celularList">

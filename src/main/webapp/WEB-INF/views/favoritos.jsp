@@ -25,7 +25,7 @@
 		<div class="page-header">
 			
 			<h1  >Favoritos
-			<form style="float:right" action="/celularCompare">
+			<form style="float:right" action="/">
 				<button   type="submit" class="btn btn-default" data-dismiss="modal">Voltar</button>
 			</form></h1>
 		</div>
