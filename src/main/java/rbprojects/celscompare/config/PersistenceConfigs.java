@@ -35,7 +35,7 @@ public class PersistenceConfigs implements ApplicationContextAware {
 		org.apache.commons.dbcp.BasicDataSource dataSource = new BasicDataSource();
 		if(isTesteEnvironment()){
 			dataSource.setDriverClassName("org.h2.Driver");
-			final String url = "jdbc:h2:./data/test";//;INIT=RUNSCRIPT FROM 'classpath:/teste.sql'";
+			final String url = "jdbc:h2:mem:test";//;INIT=RUNSCRIPT FROM 'classpath:/teste.sql'";
 			dataSource.setUrl(url);
 			dataSource.setUsername("sa");
 			dataSource.setPassword("");

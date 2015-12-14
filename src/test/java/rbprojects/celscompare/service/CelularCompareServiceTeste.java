@@ -146,7 +146,7 @@ values(5,'Motorola Moto X Play Colors 32GB',32,21,5.5, 1301.52,5);
 	     for (RequisitoComparativoDTO requisitoCelularVO : req) {
 		    if(requisitoCelularVO.descricao.equals(CelsCompareService.CAMERA_FRONTAL_RESOLUCAO)){
 		    	requisitosInformados++;
-		       	Assert.assertEquals("5 Mp",requisitoCelularVO.valorCelular1);
+		       	Assert.assertEquals("5 MP",requisitoCelularVO.valorCelular1);
 		    	Assert.assertEquals("",requisitoCelularVO.valorCelular2);
 		    	Assert.assertEquals(true, requisitoCelularVO.celular1emelhor);
 		    	Assert.assertEquals(false, requisitoCelularVO.celular2emelhor);
@@ -154,8 +154,8 @@ values(5,'Motorola Moto X Play Colors 32GB',32,21,5.5, 1301.52,5);
 		 	}
 		    if(requisitoCelularVO.descricao.equals(CelsCompareService.CAMERA_TRASEIRA_RESOLUCAO)){
 		       	requisitosInformados++;
-		    	Assert.assertEquals("21 Mp",requisitoCelularVO.valorCelular1);
-		    	Assert.assertEquals("27,7 Mp",requisitoCelularVO.valorCelular2);
+		    	Assert.assertEquals("21 MP",requisitoCelularVO.valorCelular1);
+		    	Assert.assertEquals("27,7 MP",requisitoCelularVO.valorCelular2);
 		      	Assert.assertEquals(false, requisitoCelularVO.celular1emelhor);
 		    	Assert.assertEquals(true, requisitoCelularVO.celular2emelhor);
 		    }
