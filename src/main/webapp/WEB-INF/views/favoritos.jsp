@@ -35,16 +35,18 @@
 			
 		
 
-		<table class="table table-striped">
+		<table id="favoritos" class="table table-striped">
 			<thead>
 				<tr>
+					<th>Rank</th>
 					<th>Celular</th>
 					<th>Usuários</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="phone in favoritos">
-					<td width="80%">{{phone.modelo}}</td>
+					<td width="10%">{{phone.rank}}</td>
+					<td width="70%">{{phone.modelo}}</td>
 					<td width="20%">{{phone.votacoes}}</td>
 					
 

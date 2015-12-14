@@ -3,25 +3,29 @@
  */
 // Encoding: ISO-8859-1
 
-$(function() {
+jQuery(function() {
     function reposition() {
-        var modal = $(this),
-            dialog = $("#alert_dialog");
+        var modal =  jQuery(this),
+            dialog = jQuery("#alert_dialog");
         modal.css('display', 'block');
         
         // Dividing by two centers the modal exactly, but dividing by three 
         // or four works better for larger screens.
-        dialog.css("margin-top", Math.max(0, ($(window).height() - dialog.height()) / 2));
+        dialog.css("margin-top", Math.max(0, (jQuery(window).height() - dialog.height()) / 2));
     }
     // Reposition when a modal is shown
-    $('.modal').on('show.bs.modal', reposition);
+    jQuery('.modal').on('show.bs.modal', reposition);
     // Reposition when the window is resized
-    $(window).on('resize', function() {
-        $('.modal:visible').each(reposition);
+    jQuery(window).on('resize', function() {
+    	jQuery('.modal:visible').each(reposition);
     });
 });
 
 
+
+function formatMelhor(){
+    jQuery( "#table_comparativo tr td:contains('Melhor')" ).css("color", "red");
+};
 function celularCount(celulares){
 	var count = 0;
 	var index
@@ -42,7 +46,7 @@ var celsCompareApp = angular.module('celsCompareApp', [])
 var errorCallback = function($scope){
 	return function(response){
 		$scope.alertaMensagem='Erro status '+response.status;
-		$("#alert").modal('show');
+		jQuery("#alert").modal('show');
 	}
 }
 
@@ -50,7 +54,7 @@ celsCompareApp.service('celscompareService',['$http',function($http){
 	
 	this.alertMessage = function($scope,message){
 		$scope.alertaMensagem=message;
-		$("#alert").modal('show');
+		jQuery("#alert").modal('show');
 		
 	}
 	this.findAll = function(callBack,error){
@@ -77,11 +81,11 @@ celsCompareApp.service('celscompareService',['$http',function($http){
 		
 		$http.post("/compare/"+celular1+"/"+celular2,{})
 		        .then(function (response) {
-		        	$("#aguarde").modal('hide');
+		        	
 		    		
 		        	callBack(response.data);
 		         },function(response){
-		        	 $("#aguarde").modal('hide');
+		        	 
 		        	 error(response);
 		         });
 		
@@ -90,10 +94,10 @@ celsCompareApp.service('celscompareService',['$http',function($http){
 		
 		$http.post("/addFavorito/"+celular,{})
 		        .then(function (response) {
-		        	$("#aguarde").modal('hide');
+		        	
 		        	callBack(response.data);
 		         },function(response){
-		        	 $("#aguarde").modal('hide');
+		        	
 		        	 error(response);
 		         });
 		
@@ -112,7 +116,7 @@ celsCompareApp.controller('celularList',['$scope', 'celscompareService', functio
 	  $scope.addCompare = function(compareRow){
 		    if($scope.celularesComparacao == null || celularCount($scope.celularesComparacao) == 0){
 		    	$scope.celularesComparacao = [];
-		    	document.getElementById('compare').disabled='disabled';
+		    	jQuery("#compare").prop("disabled",true);
 		    }
 		    
 		    if(celularCount($scope.celularesComparacao) > 1 ){
@@ -143,25 +147,35 @@ celsCompareApp.controller('celularList',['$scope', 'celscompareService', functio
 		    
 		   
 			if(celularCount($scope.celularesComparacao) == 2){
-				document.getElementById('compare').disabled='';
+				jQuery("#compare").prop("disabled",false);
 			}
 	  }
 	  $scope.favorito = function(idCelular){
 		  celscompareService.addFavorito(idCelular,function(data){
-			  document.getElementById('formFavorito#'+ idCelular).submit();
+			  jQuery("#formFavorito#"+ idCelular).submit();
 		  },errorCallback($scope))
 	  }
 	  $scope.compare = function(){
 		   celscompareService.buscaComparativos($scope.celularesComparacao[0].idCelular,
 				  $scope.celularesComparacao[1].idCelular, function(response){
 			  $scope.comparativo =   response;
-			  $("#comparativo").modal('show');
+			  setTimeout(function () {
+			        $scope.$apply(function () {
+			        	 formatMelhor();
+			        	 jQuery("#comparativo").modal('show');
+			        });
+			   }, 100);
+			  // $scope.$apply(function () {
+				//  formatMelhor();
+		     // });
+			 
+			  
 		  },errorCallback($scope))
 	  }
 	  $scope.fecharComparativo = function(){
 		  $scope.celularesComparacao = [];
-		  document.getElementById('compare').disabled='disabled';
-		  $("#comparativo").modal('hide');
+		  jQuery("#compare").prop("disabled",true);
+		  jQuery("#comparativo").modal('hide');
 	  }
 	  $scope.limpar = function(numerocelular){
 		  var celulares  = $scope.celularesComparacao;
@@ -171,7 +185,7 @@ celsCompareApp.controller('celularList',['$scope', 'celscompareService', functio
 		  } else {
 			  $scope.celularesComparacao[0]=null;
 		  }
-		  document.getElementById('compare').disabled='disabled';
+		  jQuery("#compare").prop("disabled",true);
 	  }
 	  
 	  
