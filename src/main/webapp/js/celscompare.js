@@ -152,7 +152,7 @@ celsCompareApp.controller('celularList',['$scope', 'celscompareService', functio
 	  }
 	  $scope.favorito = function(idCelular){
 		  celscompareService.addFavorito(idCelular,function(data){
-			  jQuery("#formFavorito#"+ idCelular).submit();
+			  jQuery("#formFavorito_"+ idCelular).submit();
 		  },errorCallback($scope))
 	  }
 	  $scope.compare = function(){

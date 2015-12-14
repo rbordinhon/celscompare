@@ -108,7 +108,7 @@
 				<tr ng-repeat="phone in celulares">
 					<td width="92%"><a href="#" ng-click="addCompare(phone)">{{phone.modelo}}</a></td>
 					<td>
-						<form id="{{'formFavorito#'+ phone.idCelular}}"
+						<form id="{{'formFavorito_'+ phone.idCelular}}"
 							action="listaFavoritos">
 							<!--<button style="heigth:30px" class="btn btn-primary"        
 							data-toggle="modal" ng-click="favorito(phone.idCelular)"
