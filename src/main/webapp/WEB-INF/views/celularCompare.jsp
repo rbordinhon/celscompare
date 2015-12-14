@@ -22,14 +22,19 @@
 <script src="/js/celscompare.js" charset="UTF-8" type="text/javascript" >
 </script>
 <style type="text/css">
+#compare{
+	cursor: pointer;
+	float: left;
+	left: 25%;
+
+}
 #addCompare {
 	cursor: pointer;
 	float: left;
-	position: relative;
 	left: 25%;
-	float: left;
-	position: relative;
-	position: relative;
+}
+#limparCel{
+cursor: pointer;
 }
 #comparativo_dialog{
  width: 1000px;
@@ -46,46 +51,63 @@
 <body ng-controller="celularList">
 	<div class="container">
 		<div class="page-header">
-			<h1>Celular Comparação</h1>
+			<h2>Celular Comparação</h2>
 		</div>
 		<table class="table">
 			<thead>
 				<tr>
 					<th>Celular 1</th>
+					<th></th>
 					<th>Celular 2</th>
+					<th></th>
 					<th>Comparar</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td width="45%">{{celularesComparacao[0].modelo}}</td>
-					<td width="45%">{{celularesComparacao[1].modelo}}</td>
-					<td width="10%"><button class="btn btn-primary"
-							data-toggle="modal" ng-click="compare()" disabled="disabled"
-							id="compare" type="button" class="btn btn-primary">OK</button></td>
+					<td width="30%" style="vertical-align:middle">{{celularesComparacao[0].modelo}}</td>
+					<td width="16%" style="vertical-align:middle">
+					<button class="btn btn-default"
+					         style="{{celularesComparacao[0].modelo == null ? 'visibility: hidden;':''}}"
+							data-toggle="modal" ng-click="limpar(1)"
+							id="limpar" type="button" >Limpar</button>
+					</td>
+					<td width="30%" style="vertical-align:middle">{{celularesComparacao[1].modelo}}</td>
+					<td width="16%" style="vertical-align:middle">
+					<button class="btn btn-default"
+					         style="{{celularesComparacao[1].modelo == null ? 'visibility: hidden;':''}}"
+							data-toggle="modal" ng-click="limpar(2)"
+							id="limpar" type="button" >Limpar</button>
+					</td>
+						
+					<td>
+					<button class="btn btn-primary" disabled="disabled"       
+							data-toggle="modal" ng-click="compare()"
+							id="compare" type="button" >OK</button>
+				   
+							</td>
 				</tr>
 			</tbody>
 		</table>
-
-		<table class="table">
+ 
+		<table  class="table table-striped table-hover">
 			<thead>
 				<tr>
 					<th>Celular</th>
-					<th>Comparar</th>
 					<th>Favorito</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody >
 				<tr ng-repeat="phone in celulares">
-					<td width="80%">{{phone.modelo}}</td>
-					<td width="10%"><span id="addCompare"
-						class="glyphicon glyphicon-plus-sign" ng-click="addCompare(phone)"></span></td>
-
-					<td width="10%">
+					<td width="92%"><a href="#" ng-click="addCompare(phone)">{{phone.modelo}}</a></td>
+					<td >
 						<form id="{{'formFavorito#'+ phone.idCelular}}"
 							action="listaFavoritos">
-							<span id="addCompare" ng-click="favorito(phone.idCelular)"
-								class="glyphicon glyphicon-ok-circle"></span>
+							<!--<button style="heigth:30px" class="btn btn-primary"        
+							data-toggle="modal" ng-click="favorito(phone.idCelular)"
+							id="addCompare" type="button" >OK</button>-->
+							 <span id="addCompare" ng-click="favorito(phone.idCelular)"
+								class="glyphicon glyphicon-ok-circle"></span> 
 
 						</form>
 					</td>
@@ -115,14 +137,14 @@
 		<div id="comparativo_dialog" class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
+					<button type="button" class="close" ng-click="fecharComparativo()"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 					<h4 class="modal-title" id="myModalLabel">Comparativo</h4>
 				</div>
 				<div class="modal-body">
-					<table class="table">
+					<table class="table table-striped">
 						<thead>
 							<tr>
 							    <th>Requisito</th>
@@ -141,7 +163,7 @@
 					</table>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+					<button type="button" class="btn btn-default" ng-click="fecharComparativo()">Fechar</button>
 				</div>
 			</div>
 		</div>

@@ -27,15 +27,15 @@
 	<div class="container">
 		<div class="page-header">
 			
-			<h1  >Favoritos
+			<h2  >Favoritos
 			<form style="float:right" action="/celularCompare">
 				<button   type="submit" class="btn btn-default" data-dismiss="modal">Voltar</button>
-			</form></h1>
+			</form></h2>
 		</div>
 			
 		
 
-		<table class="table">
+		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th>Celular</th>
